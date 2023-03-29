@@ -58,3 +58,28 @@ Node* removeDuplicates(Node* head){
     }
     return head;
 }
+
+
+//-----------------------------------------------------------------IN JAVA ------------------------------------------------------------------------------------------
+class Solution
+{
+    //Function to remove duplicates from unsorted linked list.
+    public Node removeDuplicates(Node head) 
+    {
+        HashMap<Integer,Boolean>vis=new HashMap<>();
+        Node prev=head;
+        vis.put(prev.data,true);
+        Node curr=head.next;
+        while(curr!=null){
+            if(vis.containsKey(curr.data)==true){
+                prev.next=curr.next;
+            }
+            else{
+                vis.put(curr.data,true);
+                prev=prev.next;
+            }
+            curr=curr.next;
+        }
+        return head;
+    }
+}
