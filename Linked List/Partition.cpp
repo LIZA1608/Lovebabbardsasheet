@@ -19,43 +19,22 @@
 
 Node*findPartiton(Node*head, int x)
 {
-	if(head==NULL ||head->next==NULL)
-        return head;
-    Node*small=NULL;
-    Node*big=NULL;
-    Node*stail=NULL;
-    Node*btail=NULL;
-    Node* temp=head;
-    while(temp){
-        Node* newnode=new Node(temp->data);
-        if(temp->data<x){
-            if(small==NULL){
-                small=newnode;
-                stail=newnode;
-            }
-            else{
-                stail->next=newnode;
-                stail=newnode;
-            }
+	Node* small=new Node(0);
+    Node *high=new Node(0);
+    Node*smallhead=small;
+    Node*highhead=high;
+    while(head!=NULL){
+        if(head->data<x){
+            smallhead->next=head;
+            smallhead=smallhead->next;
         }
         else{
-            if(big==NULL){
-                big=newnode;
-                btail=newnode;
-            }
-            else{
-                btail->next=newnode;
-                btail=newnode;
-            }
+            highhead->next=head;
+            highhead=highhead->next;
         }
-        temp=temp->next;
+        head=head->next;
     }
-    if(stail)
-        stail->next=big;
-    if(btail)
-        btail->next=NULL;
-    if(!stail)
-        return big;
-    return small;
-    
+    highhead->next=NULL;
+    smallhead->next=high->next;
+    return small->next;
 }
