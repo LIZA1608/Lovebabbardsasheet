@@ -1,5 +1,6 @@
 /*https://www.codingninjas.com/codestudio/problems/remove-consecutive-duplicates_893195?topList=love-babbar-dsa-sheet-problems*/
 
+
 void solve(string &s,string &ans,int i,int n,char prev){
     if(i==n){
         return;
